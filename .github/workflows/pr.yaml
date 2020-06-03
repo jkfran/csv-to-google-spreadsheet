@@ -1,0 +1,19 @@
+name: Test
+
+on: pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Upload CSV to Spreadsheet
+      uses: jkfran/csv-to-google-spreadsheet@code
+      with:
+        csv_path: example.csv
+        spreadsheet_id: ${{ secrets.google_spreadsheet_id }}
+        worksheet: 0
+        google_service_account_email: ${{ secrets.google_service_account_email }}
+        google_service_account_private_key: ${{ secrets.google_service_account_private_key }}
